@@ -1,0 +1,29 @@
+body {
+  background-color: #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+table {
+  border-collapse: collapse;
+  border: 7px inset;
+  user-select: none;
+}
+
+td {
+  border: 3px solid #949393;
+}
+
+.cell {
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  font-size: 18px;
+  background-color: #9a9a9a;
+}
+
+.hidden {
+  background-color: #bdbdbd;
+  border: 3px outset;
+}
