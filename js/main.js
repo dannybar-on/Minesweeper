@@ -165,7 +165,7 @@ function cellClicked(cell, row, col) {
     gGame.firstClickedCell = true;
 
     if (!gGame.isManuallyPos) {
-      setMinesOnBoard(gBoard, gLevel.MINES, clickedCell);
+      setMinesOnBoard(gBoard, gLevel.MINES, { row, col });
     }
   }
 
@@ -204,7 +204,7 @@ function setMinesOnBoard(board, amount, cell) {
     var row = getRandomInt(0, board.length);
     var col = getRandomInt(0, board[0].length);
 
-    if (cell === board[row][col] && gGame.firstClickedCell) {
+    if (getNegs(board, cell.row, cell.col, row, col) && gGame.firstClickedCell) {
       i--;
       continue;
     }
@@ -474,10 +474,11 @@ function renderScores() {
         break;
     }
 
-    if (localStorage.getItem(level) === null)
-      localStorage.setItem(level, '0');
+    if (localStorage.getItem(level) === null) localStorage.setItem(level, '0');
 
-    scores += `<tr><td>${level}</td><td class="${level}">${localStorage.getItem(level)}</td></tr>`;
+    scores += `<tr><td>${level}</td><td class="${level}">${localStorage.getItem(
+      level
+    )}</td></tr>`;
   }
 
   return scores;
@@ -577,4 +578,20 @@ function rollBack() {
 
   gBoard = storeBoardSteps(board[0]);
   renderBoard(gBoard);
+}
+
+function getNegs(board, row, col, ranRow, ranCol) {
+  for (var i = row - 1; i <= row + 1; i++) {
+    if (i < 0 || i > board.length - 1) continue;
+
+    for (var j = col - 1; j <= col + 1; j++) {
+      if (j < 0 || j > board[i].length - 1) continue;
+
+      if (board[i][j] === board[ranRow][ranCol]) {
+        return true;
+      }
+    }
+  }
+
+  return false;
 }
