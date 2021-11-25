@@ -8,18 +8,42 @@
     <link rel="stylesheet" href="./css/default.css" />
   </head>
   <body onload="initGame()">
+    <h1>MINESWEEPER</h1>
+    <div class="stats">
+      <div>Time: <span class="timer"></span></div>
+      <div>Lives: <span class="lives"></span></div>
+    </div>
+    <table class="tb-scores">
+      <thead>
+        <tr>
+          <th>LEVEL</th>
+          <th>BEST SCORE</th>
+        </tr>
+      </thead>
+      <tbody class="scores"></tbody>
+    </table>
+    <h3>Hints: <span class="hints"></span></h3>
+    <button class="btn" onclick="safeClick()">SAFE CLICK</button>
+    <span class="safe-clicks"></span>
+    <h3 class="smiley" onclick="initGame()"></h3>
     <table draggable>
       <tbody class="board"></tbody>
     </table>
-    <button class="difficulty-btn" onclick="difficultyLevel('beginner')">
-      Beginner
-    </button>
-    <button class="difficulty-btn" onclick="difficultyLevel('medium')">
-      Medium
-    </button>
-    <button class="difficulty-btn" onclick="difficultyLevel('expert')">
-      Expert
-    </button>
+    <div class="btns">
+      <button class="btn" onclick="difficultyLevel('beginner')">
+        BEGINNER
+      </button>
+      <button class="btn" onclick="difficultyLevel('medium')">
+        MEDIUM
+      </button>
+      <button class="btn" onclick="difficultyLevel('expert')">
+        EXPERT
+      </button>
+    </div>
+    <div class="btns">
+      <button class="btn" onclick="manualMode()">MANUALLY</button>
+      <button class="btn" onclick="rollBack()">PREVIOUS STEP</button>
+    </div>
     <script src="./js/util.js"></script>
     <script src="./js/main.js"></script>
   </body>
